@@ -24,8 +24,11 @@ namespace MyRecipes.Services.Data.Tests
                                                             new Setting(),
                                                             new Setting(),
                                                         }.AsQueryable());
+
             var service = new SettingsService(repository.Object);
+
             Assert.Equal(3, service.GetCount());
+
             repository.Verify(x => x.All(), Times.Once);
         }
 
@@ -34,14 +37,18 @@ namespace MyRecipes.Services.Data.Tests
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "SettingsTestDb").Options;
+
             using var dbContext = new ApplicationDbContext(options);
+
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
+
             await dbContext.SaveChangesAsync();
 
             using var repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);
+
             Assert.Equal(3, service.GetCount());
         }
     }

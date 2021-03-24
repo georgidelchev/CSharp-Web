@@ -51,18 +51,23 @@ namespace MyRecipes.Web
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
+
             services.AddRazorPages();
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton(this.configuration);
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
+
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+
             services.AddTransient<ISettingsService, SettingsService>();
         }
 
@@ -76,6 +81,7 @@ namespace MyRecipes.Web
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
+
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
@@ -103,7 +109,9 @@ namespace MyRecipes.Web
                 endpoints =>
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
                         endpoints.MapRazorPages();
                     });
         }

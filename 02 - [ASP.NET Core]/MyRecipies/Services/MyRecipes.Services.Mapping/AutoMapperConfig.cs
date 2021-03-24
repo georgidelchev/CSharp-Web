@@ -48,6 +48,7 @@ namespace MyRecipes.Services.Mapping
                         map.CreateMappings(configuration);
                     }
                 });
+
             MapperInstance = new Mapper(new MapperConfiguration(config));
         }
 

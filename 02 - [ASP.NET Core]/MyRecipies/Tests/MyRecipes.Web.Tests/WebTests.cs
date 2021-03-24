@@ -19,9 +19,13 @@ namespace MyRecipes.Web.Tests
         public async Task IndexPageShouldReturnStatusCode200WithTitle()
         {
             var client = this.server.CreateClient();
+
             var response = await client.GetAsync("/");
+
             response.EnsureSuccessStatusCode();
+
             var responseContent = await response.Content.ReadAsStringAsync();
+
             Assert.Contains("<title>", responseContent);
         }
 
@@ -29,7 +33,9 @@ namespace MyRecipes.Web.Tests
         public async Task AccountManagePageRequiresAuthorization()
         {
             var client = this.server.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
+
             var response = await client.GetAsync("Identity/Account/Manage");
+
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
         }
     }

@@ -33,6 +33,7 @@ namespace MyRecipes.Data.Seeding
             {
                 await seeder.SeedAsync(dbContext, serviceProvider);
                 await dbContext.SaveChangesAsync();
+
                 logger.LogInformation($"Seeder {seeder.GetType().Name} done.");
             }
         }

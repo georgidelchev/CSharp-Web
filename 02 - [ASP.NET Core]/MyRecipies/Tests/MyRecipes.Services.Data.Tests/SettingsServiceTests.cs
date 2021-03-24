@@ -1,20 +1,17 @@
-﻿namespace MyRecipes.Services.Data.Tests
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using MyRecipes.Data;
+using MyRecipes.Data.Common.Repositories;
+using MyRecipes.Data.Models;
+using MyRecipes.Data.Repositories;
+using Xunit;
+
+namespace MyRecipes.Services.Data.Tests
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using MyRecipes.Data;
-    using MyRecipes.Data.Common.Repositories;
-    using MyRecipes.Data.Models;
-    using MyRecipes.Data.Repositories;
-
-    using Microsoft.EntityFrameworkCore;
-
-    using Moq;
-
-    using Xunit;
-
     public class SettingsServiceTests
     {
         [Fact]

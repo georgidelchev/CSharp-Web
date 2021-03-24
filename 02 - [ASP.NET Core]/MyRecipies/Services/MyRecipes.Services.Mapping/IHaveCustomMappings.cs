@@ -1,7 +1,7 @@
-﻿namespace MyRecipes.Services.Mapping
-{
-    using AutoMapper;
+﻿using AutoMapper;
 
+namespace MyRecipes.Services.Mapping
+{
     public interface IHaveCustomMappings
     {
         void CreateMappings(IProfileExpression configuration);

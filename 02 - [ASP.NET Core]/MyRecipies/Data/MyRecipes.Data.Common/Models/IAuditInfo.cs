@@ -1,7 +1,7 @@
-﻿namespace MyRecipes.Data.Common.Models
-{
-    using System;
+﻿using System;
 
+namespace MyRecipes.Data.Common.Models
+{
     public interface IAuditInfo
     {
         DateTime CreatedOn { get; set; }

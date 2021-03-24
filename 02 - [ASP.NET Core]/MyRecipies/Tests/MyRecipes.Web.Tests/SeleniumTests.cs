@@ -1,13 +1,12 @@
-﻿namespace MyRecipes.Web.Tests
+﻿using System;
+using System.Linq;
+
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using Xunit;
+
+namespace MyRecipes.Web.Tests
 {
-    using System;
-    using System.Linq;
-
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-
-    using Xunit;
-
     public class SeleniumTests : IClassFixture<SeleniumServerFactory<Startup>>, IDisposable
     {
         private readonly SeleniumServerFactory<Startup> server;

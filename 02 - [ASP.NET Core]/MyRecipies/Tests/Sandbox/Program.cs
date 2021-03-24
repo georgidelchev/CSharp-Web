@@ -1,26 +1,24 @@
-﻿namespace Sandbox
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+
+using CommandLine;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MyRecipes.Data;
+using MyRecipes.Data.Common;
+using MyRecipes.Data.Common.Repositories;
+using MyRecipes.Data.Models;
+using MyRecipes.Data.Repositories;
+using MyRecipes.Data.Seeding;
+using MyRecipes.Services.Data;
+using MyRecipes.Services.Messaging;
+
+namespace Sandbox
 {
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Threading.Tasks;
-
-    using MyRecipes.Data;
-    using MyRecipes.Data.Common;
-    using MyRecipes.Data.Common.Repositories;
-    using MyRecipes.Data.Models;
-    using MyRecipes.Data.Repositories;
-    using MyRecipes.Data.Seeding;
-    using MyRecipes.Services.Data;
-    using MyRecipes.Services.Messaging;
-
-    using CommandLine;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-
     public static class Program
     {
         public static int Main(string[] args)

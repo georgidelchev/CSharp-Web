@@ -1,12 +1,11 @@
-﻿namespace MyRecipes.Data
+﻿using System;
+using System.Threading.Tasks;
+
+using Microsoft.EntityFrameworkCore;
+using MyRecipes.Data.Common;
+
+namespace MyRecipes.Data
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using MyRecipes.Data.Common;
-
-    using Microsoft.EntityFrameworkCore;
-
     public class DbQueryRunner : IDbQueryRunner
     {
         public DbQueryRunner(ApplicationDbContext context)

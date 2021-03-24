@@ -1,7 +1,7 @@
-﻿namespace MyRecipes.Services.Data
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace MyRecipes.Services.Data
+{
     public interface ISettingsService
     {
         int GetCount();

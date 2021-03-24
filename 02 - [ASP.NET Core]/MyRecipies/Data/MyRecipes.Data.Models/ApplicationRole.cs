@@ -1,12 +1,11 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+using System;
+
+using Microsoft.AspNetCore.Identity;
+using MyRecipes.Data.Common.Models;
+
 namespace MyRecipes.Data.Models
 {
-    using System;
-
-    using MyRecipes.Data.Common.Models;
-
-    using Microsoft.AspNetCore.Identity;
-
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {
         public ApplicationRole()

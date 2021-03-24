@@ -1,11 +1,10 @@
-﻿namespace MyRecipes.Data
+﻿using System.Linq;
+
+using Microsoft.EntityFrameworkCore;
+using MyRecipes.Data.Common.Models;
+
+namespace MyRecipes.Data
 {
-    using System.Linq;
-
-    using MyRecipes.Data.Common.Models;
-
-    using Microsoft.EntityFrameworkCore;
-
     internal static class EntityIndexesConfiguration
     {
         public static void Configure(ModelBuilder modelBuilder)

@@ -1,13 +1,12 @@
-﻿namespace MyRecipes.Data.Repositories
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Microsoft.EntityFrameworkCore;
+using MyRecipes.Data.Common.Repositories;
+
+namespace MyRecipes.Data.Repositories
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using MyRecipes.Data.Common.Repositories;
-
-    using Microsoft.EntityFrameworkCore;
-
     public class EfRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {

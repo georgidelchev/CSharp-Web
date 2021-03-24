@@ -1,9 +1,9 @@
-﻿namespace MyRecipes.Data.Common.Repositories
+﻿using System.Linq;
+
+using MyRecipes.Data.Common.Models;
+
+namespace MyRecipes.Data.Common.Repositories
 {
-    using System.Linq;
-
-    using MyRecipes.Data.Common.Models;
-
     public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {

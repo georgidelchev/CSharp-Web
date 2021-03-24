@@ -1,11 +1,10 @@
-﻿namespace MyRecipes.Web.Controllers
+﻿using System.Diagnostics;
+
+using Microsoft.AspNetCore.Mvc;
+using MyRecipes.Web.ViewModels;
+
+namespace MyRecipes.Web.Controllers
 {
-    using System.Diagnostics;
-
-    using MyRecipes.Web.ViewModels;
-
-    using Microsoft.AspNetCore.Mvc;
-
     public class HomeController : BaseController
     {
         public IActionResult Index()

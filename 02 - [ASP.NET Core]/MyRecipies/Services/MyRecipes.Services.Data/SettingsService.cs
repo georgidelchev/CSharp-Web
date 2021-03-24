@@ -1,12 +1,12 @@
-﻿namespace MyRecipes.Services.Data
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using MyRecipes.Data.Common.Repositories;
+using MyRecipes.Data.Models;
+using MyRecipes.Services.Mapping;
+
+namespace MyRecipes.Services.Data
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using MyRecipes.Data.Common.Repositories;
-    using MyRecipes.Data.Models;
-    using MyRecipes.Services.Mapping;
-
     public class SettingsService : ISettingsService
     {
         private readonly IDeletableEntityRepository<Setting> settingsRepository;

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MyRecipes.Data;
+using MyRecipes.Services.Data;
 using MyRecipes.Web.ViewModels;
 using MyRecipes.Web.ViewModels.Home;
 
@@ -10,21 +10,23 @@ namespace MyRecipes.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly IGetCountsService countsService;
 
-        public HomeController(ApplicationDbContext dbContext)
+        public HomeController(IGetCountsService countsService)
         {
-            this.dbContext = dbContext;
+            this.countsService = countsService;
         }
 
         public IActionResult Index()
         {
+            var countsDto = this.countsService.GetCounts();
+
             var viewModel = new IndexViewModel()
             {
-                CategoriesCount = this.dbContext.Categories.Count(),
-                ImagesCount = this.dbContext.Images.Count(),
-                IngredientsCount = this.dbContext.Ingredients.Count(),
-                RecipesCount = this.dbContext.Recipes.Count(),
+                CategoriesCount = countsDto.CategoriesCount,
+                IngredientsCount = countsDto.IngredientsCount,
+                ImagesCount = countsDto.ImagesCount,
+                RecipesCount = countsDto.RecipesCount,
             };
 
             return this.View(viewModel);

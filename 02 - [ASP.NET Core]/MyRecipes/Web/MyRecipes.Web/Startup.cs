@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 
+using HtmlAgilityPack;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ using MyRecipes.Data.Common.Repositories;
 using MyRecipes.Data.Models;
 using MyRecipes.Data.Repositories;
 using MyRecipes.Data.Seeding;
+using MyRecipes.Services;
 using MyRecipes.Services.Data;
 using MyRecipes.Services.Mapping;
 using MyRecipes.Services.Messaging;
@@ -73,6 +75,10 @@ namespace MyRecipes.Web
             services.AddTransient<ICategoriesService, CategoriesService>();
 
             services.AddTransient<IRecipesService, RecipesService>();
+
+            services.AddTransient<IGotvachBgScraperService, GotvachBgScraperService>();
+
+            services.AddTransient<HtmlWeb>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

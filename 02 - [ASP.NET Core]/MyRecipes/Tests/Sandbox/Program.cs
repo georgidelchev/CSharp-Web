@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using CommandLine;
@@ -22,6 +23,7 @@ namespace Sandbox
     {
         public static int Main(string[] args)
         {
+            return 0;
             Console.WriteLine($"{typeof(Program).Namespace} ({string.Join(" ", args)}) starts working...");
 
             var serviceCollection = new ServiceCollection();

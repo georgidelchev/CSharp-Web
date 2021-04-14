@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
 using MyRecipes.Data.Common.Repositories;
 using MyRecipes.Data.Models;
 using MyRecipes.Services.Mapping;
@@ -12,6 +12,7 @@ namespace MyRecipes.Services.Data
 {
     public class RecipesService : IRecipesService
     {
+        private readonly string[] AllowedExtensions = { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Recipe> recipeRepository;
 
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
@@ -22,7 +23,7 @@ namespace MyRecipes.Services.Data
             this.ingredientsRepository = ingredientsRepository;
         }
 
-        public async Task CreateAsync(CreateRecipeInputModel input, string userId)
+        public async Task CreateAsync(CreateRecipeInputModel input, string userId, string imagePath)
         {
             var recipe = new Recipe()
             {
@@ -56,8 +57,32 @@ namespace MyRecipes.Services.Data
                 });
             }
 
-            await this.recipeRepository.AddAsync(recipe);
+            Directory.CreateDirectory($"{imagePath}/recipes/");
+            foreach (var image in input.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
 
+                if (!this.AllowedExtensions.Any(e => e.EndsWith(e)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new Image()
+                {
+                    AddedByUserId = userId,
+                    Recipe = recipe,
+                    Extension = extension,
+                };
+
+                recipe.Images.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/recipes/{dbImage.Id}.{dbImage.Extension}";
+
+                using var fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
+            }
+
+            await this.recipeRepository.AddAsync(recipe);
             await this.recipeRepository.SaveChangesAsync();
         }
 

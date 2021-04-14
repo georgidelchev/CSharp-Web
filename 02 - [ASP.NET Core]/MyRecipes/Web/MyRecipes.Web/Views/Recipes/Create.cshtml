@@ -45,7 +45,13 @@
         <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
-   
+
+    <div class="form-group">
+        <label asp-for="Images"></label>
+        <input asp-for="Images" class="form-control" />
+        <span asp-validation-for="Images" class="text-danger"></span>
+    </div>
+
     <div id="IngredientsContainer">
         <label asp-for="Ingredients"></label>
         <a class="btn btn-success" onclick="AddMoreIngredients()">+</a>

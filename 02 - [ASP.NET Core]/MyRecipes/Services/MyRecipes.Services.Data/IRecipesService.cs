@@ -7,7 +7,7 @@ namespace MyRecipes.Services.Data
 {
     public interface IRecipesService
     {
-        Task CreateAsync(CreateRecipeInputModel input, string userId);
+        Task CreateAsync(CreateRecipeInputModel input, string userId, string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
 

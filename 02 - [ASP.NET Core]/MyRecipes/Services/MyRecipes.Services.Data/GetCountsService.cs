@@ -10,11 +10,8 @@ namespace MyRecipes.Services.Data
     public class GetCountsService : IGetCountsService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
-
         private readonly IRepository<Image> imagesRepository;
-
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
-
         private readonly IDeletableEntityRepository<Recipe> recipesRepository;
 
         public GetCountsService(

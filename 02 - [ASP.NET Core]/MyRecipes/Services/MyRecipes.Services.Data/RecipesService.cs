@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using MyRecipes.Data.Common.Repositories;
 using MyRecipes.Data.Models;
 using MyRecipes.Services.Mapping;
@@ -12,12 +13,13 @@ namespace MyRecipes.Services.Data
 {
     public class RecipesService : IRecipesService
     {
-        private readonly string[] AllowedExtensions = { "jpg", "png", "gif" };
+        private readonly string[] allowedExtensions = { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Recipe> recipeRepository;
-
         private readonly IDeletableEntityRepository<Ingredient> ingredientsRepository;
 
-        public RecipesService(IDeletableEntityRepository<Recipe> recipeRepository, IDeletableEntityRepository<Ingredient> ingredientsRepository)
+        public RecipesService(
+            IDeletableEntityRepository<Recipe> recipeRepository,
+            IDeletableEntityRepository<Ingredient> ingredientsRepository)
         {
             this.recipeRepository = recipeRepository;
             this.ingredientsRepository = ingredientsRepository;
@@ -40,15 +42,11 @@ namespace MyRecipes.Services.Data
             {
                 var currentIngredient = this.ingredientsRepository
                     .All()
-                    .FirstOrDefault(i => i.Name == ingredient.Name);
-
-                if (currentIngredient == null)
+                    .FirstOrDefault(i => i.Name == ingredient.Name)
+                ?? new Ingredient()
                 {
-                    currentIngredient = new Ingredient()
-                    {
-                        Name = ingredient.Name,
-                    };
-                }
+                    Name = ingredient.Name,
+                };
 
                 recipe.Ingredients.Add(new RecipeIngredient()
                 {
@@ -60,9 +58,11 @@ namespace MyRecipes.Services.Data
             Directory.CreateDirectory($"{imagePath}/recipes/");
             foreach (var image in input.Images)
             {
-                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                var extension = Path
+                    .GetExtension(image.FileName)
+                    .TrimStart('.');
 
-                if (!this.AllowedExtensions.Any(e => e.EndsWith(e)))
+                if (!this.allowedExtensions.Any(e => e.EndsWith(e)))
                 {
                     throw new Exception($"Invalid image extension {extension}");
                 }
@@ -101,7 +101,9 @@ namespace MyRecipes.Services.Data
 
         public int GetCount()
         {
-            return this.recipeRepository.All().Count();
+            return this.recipeRepository
+                .All()
+                .Count();
         }
     }
 }

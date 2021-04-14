@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Globalization;
+using System.Linq;
 
 using AutoMapper;
 using MyRecipes.Data.Models;
@@ -14,9 +16,17 @@ namespace MyRecipes.Web.ViewModels.Recipes
 
         public string Name { get; set; }
 
+        public string ShortName
+            => this.Name.Substring(0, this.Name.Length >= 20 ? 20 : this.Name.Length);
+
         public int CategoryId { get; set; }
 
         public string CategoryName { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public string CreatedOnAsString
+            => this.CreatedOn.ToString("d", CultureInfo.InvariantCulture);
 
         public void CreateMappings(IProfileExpression configuration)
         {

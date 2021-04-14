@@ -21,7 +21,6 @@ namespace MyRecipes.Data.Models
 
         public string Extension { get; set; }
 
-        // The contents of the image is in the file system.
         public string Url { get; set; }
     }
 }

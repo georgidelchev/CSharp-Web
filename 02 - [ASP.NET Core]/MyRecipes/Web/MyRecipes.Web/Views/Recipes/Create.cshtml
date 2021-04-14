@@ -1,12 +1,12 @@
 ﻿@model MyRecipes.Web.ViewModels.Recipes.CreateRecipeInputModel
 
 @{
-    this.ViewData["Title"] = "Add new recipe";
+    this.ViewData["Name"] = "Add new recipe";
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
-    <h1>@this.ViewData["Title"]</h1>
+    <h1>@this.ViewData["Name"]</h1>
 
     <div asp-validation-summary="All" class="text-danger"></div>
 

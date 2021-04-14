@@ -25,6 +25,7 @@ namespace MyRecipes.Services.Data
                     c.Name,
                 })
                 .ToList()
+                .OrderBy(a => a.Name)
                 .Select(c => new KeyValuePair<string, string>(c.Id.ToString(), c.Name));
         }
     }

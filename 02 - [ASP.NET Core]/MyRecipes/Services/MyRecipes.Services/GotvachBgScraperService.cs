@@ -121,7 +121,7 @@ namespace MyRecipes.Services
 
         private void ScrapeRecipes()
         {
-            Parallel.For(1, 200000 + 1, i =>
+            Parallel.For(100000, 200000 + 1, i =>
             {
                 try
                 {

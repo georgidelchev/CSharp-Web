@@ -55,29 +55,26 @@ namespace MyRecipes.Web
                     }).AddRazorRuntimeCompilation();
 
             services.AddRazorPages();
-
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
 
             services.AddSingleton(this.configuration);
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-
             services.AddTransient<IGetCountsService, GetCountsService>();
-
             services.AddTransient<ICategoriesService, CategoriesService>();
-
             services.AddTransient<IRecipesService, RecipesService>();
-
             services.AddTransient<IGotvachBgScraperService, GotvachBgScraperService>();
-
+            services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<HtmlWeb>();
         }
 

@@ -9,8 +9,17 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\recipes058a5414-0a90-4f2a-aa74-4b50bd7cad70..png" />
+    <Content Remove="wwwroot\images\recipese24f350d-1828-465b-9c68-04e76c381d69..png" />
+  </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\recipes058a5414-0a90-4f2a-aa74-4b50bd7cad70..png" />
+    <None Include="wwwroot\images\recipese24f350d-1828-465b-9c68-04e76c381d69..png" />
   </ItemGroup>
 
   <ItemGroup>

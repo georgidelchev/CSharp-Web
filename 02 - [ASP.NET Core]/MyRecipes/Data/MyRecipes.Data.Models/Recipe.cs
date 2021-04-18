@@ -34,5 +34,8 @@ namespace MyRecipes.Data.Models
 
         public virtual ICollection<Image> Images { get; set; }
             = new HashSet<Image>();
+
+        public virtual ICollection<Vote> Votes { get; set; }
+            = new HashSet<Vote>();
     }
 }

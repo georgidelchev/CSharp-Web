@@ -87,5 +87,12 @@ namespace MyRecipes.Web.Controllers
             // TODO: redirect to recipe info page.
             return this.Redirect("/");
         }
+
+        public IActionResult ById(int id)
+        {
+            var recipe = this.recipesService.GetById<SingleRecipeViewModel>(id);
+
+            return this.View(recipe);
+        }
     }
 }

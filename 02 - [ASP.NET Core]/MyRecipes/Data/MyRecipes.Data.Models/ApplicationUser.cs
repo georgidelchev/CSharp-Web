@@ -32,5 +32,8 @@ namespace MyRecipes.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
             = new HashSet<IdentityUserLogin<string>>();
+
+        public virtual ICollection<Vote> Votes { get; set; }
+            = new HashSet<Vote>();
     }
 }

@@ -105,5 +105,16 @@ namespace MyRecipes.Services.Data
                 .All()
                 .Count();
         }
+
+        public T GetById<T>(int id)
+         {
+            var recipe = this.recipeRepository
+                .AllAsNoTracking()
+                .Where(r => r.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return recipe;
+        }
     }
 }

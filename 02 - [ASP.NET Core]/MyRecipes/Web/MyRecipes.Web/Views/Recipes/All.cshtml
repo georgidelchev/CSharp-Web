@@ -12,8 +12,11 @@
     {
         <div class="card col-md-4">
             <h5 class="card-title text-center">
-                @recipe.ShortName@if (recipe.Name.Length > 20)
-                {<text>...</text>}
+                <a asp-action="ById" asp-route-id="@recipe.Id">
+                    @recipe.ShortName@if (recipe.Name.Length > 20)
+                    {<text>...</text>}
+                </a>
+
             </h5>
             <img class="card-img-top" src="@recipe.ImageUrl" width="100" height="300" alt="Card image cap">
             <div class="card-body">
@@ -22,22 +25,6 @@
                 <p class="card-text text-center"><small class="text-muted">@recipe.CreatedOnAsString</small></p>
             </div>
         </div>
-        @*<div class="card media col-md-4" style="width: 1rem;">
-                <img class="card-img-top" src="@recipe.ImageUrl" width="100" height="300" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">@recipe.Name</h5>
-                    <p class="card-text">@recipe.CategoryName</p>
-                    <a href="#" class="btn btn-primary">Details</a>
-                </div>
-            </div>*@
-        @*<div class="media col-md-4">
-                <img src="@recipe.ImageUrl" class="mr-3" width="100" height="100" />
-
-                <div class="media-body">
-                    <h5 class="mt-0">@recipe.Name</h5>
-                    @recipe.CategoryName
-                </div>
-            </div>*@
     }
 </div>
 

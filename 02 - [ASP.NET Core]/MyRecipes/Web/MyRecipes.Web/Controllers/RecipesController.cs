@@ -71,6 +71,7 @@ namespace MyRecipes.Web.Controllers
 
             // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await this.userManager.GetUserAsync(this.User);
+
             try
             {
                 await this.recipesService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
@@ -84,8 +85,10 @@ namespace MyRecipes.Web.Controllers
                 return this.View(input);
             }
 
+            this.TempData["Message"] = "Recipe added successfully.";
+
             // TODO: redirect to recipe info page.
-            return this.Redirect("/");
+            return this.RedirectToAction("All");
         }
 
         public IActionResult ById(int id)

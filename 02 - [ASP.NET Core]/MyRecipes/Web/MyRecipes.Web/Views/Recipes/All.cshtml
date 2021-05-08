@@ -7,6 +7,11 @@
 <h1>@this.ViewData["Name"]</h1>
 <hr />
 
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success alert-dismissible fade show">@this.TempData["Message"]</div>
+}
+
 <div class="row">
     @foreach (var recipe in this.Model.Recipes)
     {
@@ -16,11 +21,9 @@
                     @recipe.ShortName@if (recipe.Name.Length > 20)
                     {<text>...</text>}
                 </a>
-
             </h5>
             <img class="card-img-top" src="@recipe.ImageUrl" width="100" height="300" alt="Card image cap">
             <div class="card-body">
-
                 <p class="card-text text-center">@recipe.CategoryName</p>
                 <p class="card-text text-center"><small class="text-muted">@recipe.CreatedOnAsString</small></p>
             </div>

@@ -3153,7 +3153,6 @@ ul {
         top: 57px;
         min-width: 385px;
         color: #111111;
-        -webkit-transform: perspective(400) rotate3d(1, 0, 0, -15deg);
         -webkit-transform-origin: 50% 0;
         -moz-transform-origin: 50% 0;
         -o-transform-origin: 50% 0;
@@ -3278,7 +3277,6 @@ ul {
 .cart-wrap:hover .cart-items {
     opacity: 1;
     visibility: visible;
-    -webkit-transform: perspective(400) rotate3d(0, 0, 0, 0);
 }
 
 .cart-wrap.cart-on-mobile {

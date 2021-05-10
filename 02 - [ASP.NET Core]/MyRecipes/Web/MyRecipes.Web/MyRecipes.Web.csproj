@@ -18,12 +18,21 @@
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Areas\Administration\Views\Categories\Create.cshtml" />
+    <None Include="Areas\Administration\Views\Categories\Delete.cshtml" />
+    <None Include="Areas\Administration\Views\Categories\Details.cshtml" />
+    <None Include="Areas\Administration\Views\Categories\Edit.cshtml" />
+    <None Include="Areas\Administration\Views\Categories\Index.cshtml" />
     <None Include="wwwroot\images\recipes058a5414-0a90-4f2a-aa74-4b50bd7cad70..png" />
     <None Include="wwwroot\images\recipese24f350d-1828-465b-9c68-04e76c381d69..png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

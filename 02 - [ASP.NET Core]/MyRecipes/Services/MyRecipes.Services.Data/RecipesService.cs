@@ -30,7 +30,7 @@ namespace MyRecipes.Services.Data
             var recipe = new Recipe()
             {
                 PortionsCount = input.PortionsCount,
-                CategoryId = int.Parse(input.CategoryId),
+                CategoryId = input.CategoryId,
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 PreparationTime = TimeSpan.FromMinutes(input.PreparationTime),
                 Instructions = input.Instructions,
@@ -99,6 +99,16 @@ namespace MyRecipes.Services.Data
             return recipes;
         }
 
+        public IEnumerable<T> GetRandom<T>(int count)
+        {
+            return this.recipeRepository
+                .All()
+                .OrderBy(r => Guid.NewGuid())
+                .Take(count)
+                .To<T>()
+                .ToList();
+        }
+
         public int GetCount()
         {
             return this.recipeRepository
@@ -107,7 +117,7 @@ namespace MyRecipes.Services.Data
         }
 
         public T GetById<T>(int id)
-         {
+        {
             var recipe = this.recipeRepository
                 .AllAsNoTracking()
                 .Where(r => r.Id == id)
@@ -115,6 +125,22 @@ namespace MyRecipes.Services.Data
                 .FirstOrDefault();
 
             return recipe;
+        }
+
+        public async Task UpdateAsync(int id, EditRecipeInputModel input)
+        {
+            var recipe = this.recipeRepository
+                .All()
+                .FirstOrDefault(r => r.Id == id);
+
+            recipe.Name = input.Name;
+            recipe.CategoryId = input.CategoryId;
+            recipe.Instructions = input.Instructions;
+            recipe.CookingTime = TimeSpan.FromMinutes(input.CookingTime);
+            recipe.PreparationTime = TimeSpan.FromMinutes(input.PreparationTime);
+            recipe.PortionsCount = input.PortionsCount;
+
+            await this.recipeRepository.SaveChangesAsync();
         }
     }
 }

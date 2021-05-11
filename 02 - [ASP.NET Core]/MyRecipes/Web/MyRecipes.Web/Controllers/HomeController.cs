@@ -11,15 +11,20 @@ namespace MyRecipes.Web.Controllers
     public class HomeController : BaseController
     {
         private readonly IGetCountsService countsService;
+        private readonly IRecipesService recipesService;
 
-        public HomeController(IGetCountsService countsService)
+        public HomeController(
+            IGetCountsService countsService,
+            IRecipesService recipesService)
         {
             this.countsService = countsService;
+            this.recipesService = recipesService;
         }
 
         public IActionResult Index()
         {
-            var countsDto = this.countsService.GetCounts();
+            var countsDto = this.countsService
+                .GetCounts();
 
             var viewModel = new IndexViewModel()
             {
@@ -27,6 +32,7 @@ namespace MyRecipes.Web.Controllers
                 IngredientsCount = countsDto.IngredientsCount,
                 ImagesCount = countsDto.ImagesCount,
                 RecipesCount = countsDto.RecipesCount,
+                RandomRecipes = this.recipesService.GetRandom<IndexPageRecipeViewModel>(10),
             };
 
             return this.View(viewModel);

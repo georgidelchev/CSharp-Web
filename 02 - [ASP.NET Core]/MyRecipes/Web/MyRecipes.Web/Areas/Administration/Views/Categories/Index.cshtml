@@ -7,6 +7,7 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
+
 <table id="DataTable" class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
@@ -47,7 +48,8 @@
         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
     </td>
-</tr>}
+</tr>
+}
     </tbody>
 </table>
 

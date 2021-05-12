@@ -10,7 +10,7 @@
 
 <h1>@this.ViewData["Title"]</h1>
 
-<form method="post">
+<form method="post" id="editForm">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <label asp-for="Instructions"></label>
-        <textarea asp-for="Instructions" rows="5" class="form-control" ></textarea>
+        <textarea asp-for="Instructions" rows="5" class="form-control"></textarea>
         <span asp-validation-for="Instructions" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -44,5 +44,26 @@
     <hr />
 
     <input type="hidden" asp-for="Id" />
-    <input type="submit" class="btn btn-success" value="Save Changes" />
 </form>
+
+<button type="submit" class="btn btn-success" value="Save Changes" data-toggle="modal" data-target="#modalEdit">Save changes!</button>
+
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm edit.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you confirm these changes?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onclick="editForm.submit()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

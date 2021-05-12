@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
@@ -55,7 +54,8 @@ namespace MyRecipes.Web.Controllers
             var inputModel = this.recipesService
                 .GetById<EditRecipeInputModel>(id);
 
-            inputModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            inputModel.CategoriesItems = this.categoriesService
+                .GetAllAsKeyValuePairs();
 
             return this.View(inputModel);
         }
@@ -66,12 +66,14 @@ namespace MyRecipes.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                input.CategoriesItems = this.categoriesService
+                    .GetAllAsKeyValuePairs();
 
                 return this.View(input);
             }
 
-            await this.recipesService.UpdateAsync(id, input);
+            await this.recipesService
+                .UpdateAsync(id, input);
 
             return this.RedirectToAction(nameof(this.ById), new { id });
         }

@@ -142,5 +142,35 @@ namespace MyRecipes.Services.Data
 
             await this.recipeRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<T> GetByIngredients<T>(IEnumerable<int> ingredientIds)
+        {
+            var query = this.recipeRepository
+                .All()
+                .AsQueryable();
+
+            foreach (var ingredientId in ingredientIds)
+            {
+                query = query
+                    .Where(i => i.Ingredients.Any(id => id.IngredientId == ingredientId));
+            }
+
+            return query
+                .To<T>()
+                .ToList();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var recipe = this.recipeRepository
+                .All()
+                .FirstOrDefault(r => r.Id == id);
+
+            this.recipeRepository
+                .Delete(recipe);
+
+            await this.recipeRepository
+                .SaveChangesAsync();
+        }
     }
 }

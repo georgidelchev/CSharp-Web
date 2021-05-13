@@ -69,13 +69,14 @@ namespace MyRecipes.Web
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender>(e => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IRecipesService, RecipesService>();
             services.AddTransient<IGotvachBgScraperService, GotvachBgScraperService>();
             services.AddTransient<IVotesService, VotesService>();
             services.AddTransient<HtmlWeb>();
+            services.AddTransient<IIngredientsService, IngredientsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyRecipes.Common;
 using MyRecipes.Data.Models;
 using MyRecipes.Services.Data;
+using MyRecipes.Services.Messaging;
 using MyRecipes.Web.ViewModels.Recipes;
 
 namespace MyRecipes.Web.Controllers
@@ -20,14 +22,21 @@ namespace MyRecipes.Web.Controllers
         private readonly IRecipesService recipesService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
+        private readonly IEmailSender emailSender;
 
-        public RecipesController(ICategoriesService categoriesService, IRecipesService recipesService, UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
+        public RecipesController(
+            ICategoriesService categoriesService,
+            IRecipesService recipesService,
+            UserManager<ApplicationUser> userManager,
+            IWebHostEnvironment environment,
+            IEmailSender emailSender)
         {
             this.categoriesService = categoriesService;
             this.recipesService = recipesService;
 
             this.userManager = userManager;
             this.environment = environment;
+            this.emailSender = emailSender;
         }
 
         public IActionResult All(int id = 1)
@@ -126,6 +135,32 @@ namespace MyRecipes.Web.Controllers
             var recipe = this.recipesService.GetById<SingleRecipeViewModel>(id);
 
             return this.View(recipe);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.recipesService.DeleteAsync(id);
+
+            return this.RedirectToAction(nameof(this.All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendToEmail(int id)
+        {
+            var recipe = this.recipesService
+                .GetById<RecipeInListViewModel>(id);
+
+            var html = new StringBuilder();
+
+            html.AppendLine($"<h1>{recipe.Name}</h1>")
+                .AppendLine($"<h3>{recipe.CategoryName}</h3>");
+
+            await this.emailSender
+                .SendEmailAsync("delchev_1981@abv.bg", "MyRecipes", "alienguymc@gmail.com", recipe.Name, html.ToString());
+
+            return this.RedirectToAction(nameof(this.ById), new { id });
         }
     }
 }

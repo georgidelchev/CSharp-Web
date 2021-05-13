@@ -8,7 +8,7 @@ namespace MyRecipes.Data.Models
     {
         public string Name { get; set; }
 
-        public ICollection<RecipeIngredient> Ingredients { get; set; }
+        public ICollection<RecipeIngredient> Recipes { get; set; }
             = new HashSet<RecipeIngredient>();
     }
 }

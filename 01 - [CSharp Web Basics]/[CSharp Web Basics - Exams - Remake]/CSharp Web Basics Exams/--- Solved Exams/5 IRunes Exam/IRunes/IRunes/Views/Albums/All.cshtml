@@ -1,0 +1,22 @@
+﻿<hr class="bg-success" style="height: 2px" />
+<main>
+    <h1>Albums</h1>
+    <hr class="bg-success" style="height: 2px" />
+    <a class="btn btn-success text-white" href="/Albums/Create">Create Album</a>
+    <hr class="bg-success" style="height: 2px" />
+    @if (Model.Count == 0)
+    {
+        <h3>There are currently no albums.</h3> 
+    }
+    @else
+    {
+    <div id="albums">
+        @foreach (var album in Model)
+        {
+            <h3>
+                <a href="/Albums/Details?id=@album.Id">@album.Name</a>
+            </h3>
+        }
+    </div>
+    }
+</main>

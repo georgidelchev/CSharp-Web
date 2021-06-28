@@ -1,0 +1,34 @@
+﻿<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+
+                <h1 class="display-3">@Model.Title</h1>
+                <br />
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.Trailer" frameborder="0" allowfullscreen></iframe>
+
+                <br />
+                <br />
+
+                <p>
+                    @Model.Description
+                </p>
+
+                <p><strong>Price</strong> - @Model.Price &euro;</p>
+                <p><strong>Size</strong> - @Model.Size GB</p>
+                <p><strong>Release Date</strong> - @Model.ReleaseDate AM</p>
+
+                <a class="btn btn-outline-primary" name="back" href="javascript:window.history.back()">Back</a>
+                <form action="/Games/Buy" method="post">
+                    <input type="number" value="@Model.Id" hidden="hidden" name="Id"/>
+                    <br />
+                    <input type="submit" class="btn btn-success" value="Buy" />
+                </form>
+                <br />
+                <br />
+
+            </div>
+        </div>
+    </div>
+</main>

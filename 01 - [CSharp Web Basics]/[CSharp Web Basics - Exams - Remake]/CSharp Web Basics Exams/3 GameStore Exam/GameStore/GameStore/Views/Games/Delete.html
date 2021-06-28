@@ -1,0 +1,23 @@
+﻿<main class="col-4 offset-4 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center"><h1 class="display-4">Delete Game</h1></div>
+                <br />
+                <form method="post" action="/Games/Delete" id="new-game-form">
+                    <input name="Id" type="hidden" value="@Model.Id" />
+
+                    <div class="form-group row">
+                        <label for="name" class="form-control-label">Title</label>
+                        <input type="text" maxlength="100" minlength="4" id="name" class="form-control"
+                               value="@Model.Title" disabled />
+                    </div>
+
+                    <input type="submit" id="btn-edit-game" class="btn btn-outline-danger btn-lg btn-block"
+                           value="Delete Game" />
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+</main>

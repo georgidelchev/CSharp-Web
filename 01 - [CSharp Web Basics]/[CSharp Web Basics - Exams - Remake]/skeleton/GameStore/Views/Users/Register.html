@@ -1,0 +1,39 @@
+﻿<main class="col-4 offset-4 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <h1 class="display-3">Register</h1>
+                </div>
+                <br/>
+                <form role="form" action="/Users/Register" method="post" id="login-form" autocomplete="off">
+
+                    <div class="form-group row">
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Email" name="email"/>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="name" class="sr-only">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Full Name" name="fullName"/>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="key" class="sr-only">Password</label>
+                        <input type="password" id="key" class="form-control" placeholder="Password"
+                        name="password"/>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="confirm-key" class="sr-only">Confirm Password</label>
+                        <input type="password" id="confirm-key" class="form-control"
+                               placeholder="Confirm Password" name="confirmPassword"/>
+                    </div>
+
+                    <input type="submit" id="btn-login" class="btn btn-outline-warning btn-lg btn-block" value="Register" />
+                </form>
+                <br/>
+            </div>
+        </div>
+    </div>
+</main>
